@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="./CSS/common.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/filter.css">
+</head>
+<body>
+	<div id="nav">
+		<h1 class="title"><a href="http://www.umetrip.com"></a></h1>
+		<ul class="menu">
+			<li>
+	            <a href="" class="fight">
+	            	<span class="icon-fight"></span>
+	            	实时航班
+	            </a>
+            </li>
+		</ul>
+		<div class="search-content">
+			<div id="search-container">
+				<div id="search-bar-wrapper">
+					<input id="search-bar" type="search" placeholder="搜索航班，如：CA1323" onclick="event.stopPropagation();">
+					<span id="sidebar-search-button" class="search-button"></span>
+					<span id="sidebar-search-clear"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="map-type"
+		<div class="type-item plat" style="display: block;">
+			<img src="images/plat.png" alt="地图">
+			<span>地图</span>
+		</div>
+		<div class="type-item satellite" style="display: none;">
+			<img src="images/satellite.jpg" alt="卫星">
+			<span>卫星</span>
+		</div>
+	</div>
+	<div class="filter">
+		查询
+	</div>
+
+    <div id="filterbar" class="">
+		<h3 id="filterbar-header">航班筛选<i class="icon-filter-close"></i></h3>
+		<h4 class="filter-til filter-company">航空公司<p class="btn-all">全部</p></h4>
+		<div class="filter-company-box filter-list-box">
+			<div class="filter-all"><i class="filter-check" data-all="all"></i>全部</div>
+			<ul id="filter-company-box" class="cf">
+				<li data-companycode="MU"><i class="filter-check"></i><img src="" width="19" height="19">东方航空</li>
+				<li data-companycode="CA"><i class="filter-check"></i><img src="" width="19" height="19">中国国航</li>
+				<li data-companycode="ZH"><i class="filter-check"></i><img src="" width="19" height="19">深圳航空</li>
+				<li data-companycode="CZ"><i class="filter-check"></i><img src="" width="19" height="19">南方航空</li>
+				<li data-companycode="MF"><i class="filter-check"></i><img src="" width="19" height="19">厦门航空</li>
+				<li data-companycode="G5"><i class="filter-check"></i><img src="" width="19" height="19">华夏航空</li>
+				<li data-companycode="SC"><i class="filter-check"></i><img src="" width="19" height="19">山东航空</li>
+				<li data-companycode="FM"><i class="filter-check"></i><img src="" width="19" height="19">上海航空</li>
+				<li data-companycode="CI"><i class="filter-check"></i><img src="" width="19" height="19">中华航空</li>
+				<li data-companycode="KY"><i class="filter-check"></i><img src="" width="19" height="19">昆明航空</li>
+				<li data-companycode="3U"><i class="filter-check"></i><img src="" width="19" height="19">四川航空</li>
+				<li data-companycode="KA"><i class="filter-check"></i><img src="" width="19" height="19">港龙航空</li>
+				<li data-companycode="PN"><i class="filter-check"></i><img src="" width="19" height="19">西部航空</li>
+				<li data-companycode="OQ"><i class="filter-check"></i><img src="" width="19" height="19">重庆航空</li>
+				<li data-companycode="HU"><i class="filter-check"></i><img src="" width="19" height="19">海南航空</li>
+				<li data-companycode="JR"><i class="filter-check"></i><img src="" width="19" height="19">幸福航空</li>
+				<li data-companycode="9C"><i class="filter-check"></i><img src="" width="19" height="19">春秋航空</li>
+				<li data-companycode="KN"><i class="filter-check"></i><img src="" width="19" height="19">联合航空</li>
+				<li data-companycode="HO"><i class="filter-check"></i><img src="" width="19" height="19">吉祥航空</li>
+				<li data-companycode="HX"><i class="filter-check"></i><img src="" width="19" height="19">香港航空</li>
+				<li data-companycode="BR"><i class="filter-check"></i><img src="" width="19" height="19">长荣航空</li>
+				<li data-companycode="B7"><i class="filter-check"></i><img src="" width="19" height="19">立荣航空</li>
+				<li data-companycode="GS"><i class="filter-check"></i><img src="" width="19" height="19">天津航空</li>
+				<li data-companycode="CX"><i class="filter-check"></i><img src="" width="19" height="19">国泰航空</li>
+				<li data-companycode="GE"><i class="filter-check"></i><img src="" width="19" height="19">复兴航空</li>
+				<li data-companycode="BK"><i class="filter-check"></i><img src="" width="19" height="19">奥凯航空</li>
+				<li data-companycode="8L"><i class="filter-check"></i><img src="" width="19" height="19">祥鹏航空</li>
+				<li data-companycode="AE"><i class="filter-check"></i><img src="" width="19" height="19">华信航空</li>
+				<li data-companycode="FE"><i class="filter-check"></i><img src="" width="19" height="19">远东航空</li>
+				<li data-companycode="NX"><i class="filter-check"></i><img src="" width="19" height="19">澳门航空</li>
+				<li data-companycode="DZ"><i class="filter-check"></i><img src="" width="19" height="19">东海航空</li>
+			</ul>
+			<div class="filter-other"><i class="filter-check" data-other="true"></i>其他</div>
+		</div>
+		<h4 class="filter-til filter-model">机型<p class="btn-all">全部</p></h4>
+		<div class="filter-model-box filter-list-box">
+			<div class="filter-all"><i class="filter-check" data-all="all"></i>全部</div>
+			<ul id="filter-model-box" class="cf">
+				<li data-fighttype="A320" title="A320"><i class="filter-check"></i>空客A320</li>
+				<li data-fighttype="B737" title="B737"><i class="filter-check"></i>波音B737</li>
+				<li data-fighttype="A321" title="A321"><i class="filter-check"></i>空客A321</li>
+				<li data-fighttype="A319" title="A319"><i class="filter-check"></i>空客A319</li>
+				<li data-fighttype="B777" title="B777"><i class="filter-check"></i>波音B777</li>
+				<li data-fighttype="A333" title="A333"><i class="filter-check"></i>空客A333</li>
+				<li data-fighttype="A388" title="A388"><i class="filter-check"></i>空客A388</li>
+				<li data-fighttype="B787" title="B787"><i class="filter-check"></i>波音B787</li>
+				<li data-fighttype="B747" title="B747"><i class="filter-check"></i>波音B747</li>
+				<li data-fighttype="B767" title="B767"><i class="filter-check"></i>波音B767</li>
+				<li data-fighttype="MD11" title="MD11"><i class="filter-check"></i>麦克唐纳MD11</li>
+				<li data-fighttype="B757" title="B757"><i class="filter-check"></i>波音B757</li>
+				<li data-fighttype="A340" title="A340"><i class="filter-check"></i>空客A340</li>
+				<li data-fighttype="A330" title="A330"><i class="filter-check"></i>空客A330</li>
+				<li data-fighttype="A380" title="A380"><i class="filter-check"></i>空客A380</li>
+				<li data-fighttype="A300" title="A300"><i class="filter-check"></i>空客A300</li>
+				<li data-fighttype="A340" title="A340"><i class="filter-check"></i>波音A340</li>
+				<li data-fighttype="MD82" title="MD82"><i class="filter-check"></i>麦克唐纳MD82</li>
+			</ul>
+			<div class="filter-other"><i class="filter-check" data-switcher="off" data-other="true"></i>其他</div>
+		</div>
+
+	<div id="filterbar-footer">
+		<button id="filterbar-submit" class="filterbar-footer-btn">提交</button>
+		<button id="filterbar-reset" class="filterbar-footer-btn">重置</button>
+	</div>
+</div>
+
+	
+	<div id="allmap"></div>
+</body>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=hVOmt4zo8hAZO7mhHNxj9GEf"></script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/custom.js"></script>
+<script src="./js/map.js"></script>
+<script type="text/javascript">    
+   $(function(){
+ 	
+   })
+</script>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	body, html,#allmap {width: 100%;height: 100%;overflow:hidden;margin:0;font-family:"微软雅黑";}
+	.anchorBL a,.anchorBL span{
+		display:none;
+	} 
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=hVOmt4zo8hAZO7mhHNxj9GEf"></script>
+	<script type="text/javascript">
+		// 定义一个控件类,即function
+	function ZoomControl(){
+	  // 默认停靠位置和偏移量
+	  this.defaultAnchor = BMAP_ANCHOR_BOTTOM_LEFT;
+	  this.defaultOffset = new BMap.Size(10, 10);
+	}
+
+	// 通过JavaScript的prototype属性继承于BMap.Control
+	ZoomControl.prototype = new BMap.Control();
+
+	// 自定义控件必须实现自己的initialize方法,并且将控件的DOM元素返回
+	// 在本方法中创建个div元素作为控件的容器,并将其添加到地图容器中
+	ZoomControl.prototype.initialize = function(map){
+	  // 创建一个DOM元素
+	  var div = document.createElement("div");
+	  // 添加文字说明
+	  div.appendChild(document.createTextNode("统计数据"));
+	  // 设置样式
+	  div.style.cursor = "pointer";
+	  div.style.textAlign="center";
+	  div.style.border = "1px solid gray";
+	  div.style.color  = "white";
+	  div.style.width  = "150px";
+	  div.style.height = "50px";
+	  div.style.opacity= "0.8";
+	  div.style.backgroundColor = "#000000";
+	  // 绑定事件,点击一次放大两级
+	  div.onclick = function(e){
+		
+	  }
+	  // 添加DOM元素到地图中
+	  map.getContainer().appendChild(div);
+	  // 将DOM元素返回
+	  return div;
+	}
+	</script>
+	<title>地图展示</title>
+</head>
+<body>
+	<div id="allmap"></div>
+</body>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/amazeui.min.js"></script>
+<script type="text/javascript">
+    function substitute(a, b) {
+		return a.replace(/\$\{([^\s\:\}]+)(?:\:([^\s\:\}]+))?\}/g, function(a, c) {
+			return b[c] != undefined ? b[c] : "" == b[c] ? "" : a;
+		});
+    };
+	// 百度地图API功能
+	var map = new BMap.Map("allmap");    // 创建Map实例
+	//var point=new BMap.Point(116.404, 39.515);
+	var point=new BMap.Point(106.396809 ,38.329801);
+	map.centerAndZoom(point,7);  // 初始化地图,设置中心点坐标和地图级别
+	map.addControl(new BMap.MapTypeControl());   //添加地图类型控件  地图/卫星/三维等类型
+	map.addControl(new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT})); //添加缩略地图控件
+	// 创建控件实例    
+    var myZoomCtrl = new ZoomControl();
+    // 添加到地图当中 
+    map.addControl(myZoomCtrl);
+	map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+    
+   var cr = new BMap.CopyrightControl({anchor: BMAP_ANCHOR_BOTTOM_RIGHT});   //设置版权控件位置
+	map.addControl(cr); //添加版权控件
+
+	var bs = map.getBounds();   //返回地图可视区域
+	cr.addCopyright({id: 1, content: "<div style='height:60px;width:200;'><img src='./images/logo.png'></div>", bounds: bs}); 
+
+	var label=new BMap.Label("航旅天眼为你持续提供服务",{position:point,offset:new BMap.Size(30,-30)});
+	label.setStyle({
+		color:"#82bf50",
+		fontSize:"12px",
+		height:"20px",
+		lineHeight:"20px",
+		fontFamily:"微软雅黑"
+	});
+    
+    
+
+	var content=
+	"<h4 style='margin:0 0 5px 0;padding:0.2em 0;text-align:center'>航班信息</h4>" + 
+	"<img style='float:right;margin:4px' id='imgDemo' src='./images/umetrip.png' width='32' height='32' title='flighInfo'/>" + 
+	"<p style='margin:0;line-height:1.5;font-size:13px;'>航班号：${NO}</p>" + 
+	"<p style='margin:0;line-height:1.5;font-size:13px;'>出发地-目的地：${OD}</p>" + 
+	"<p style='margin:0;line-height:1.5;font-size:13px;'>机龄：${year}</p>"+
+	"<p style='margin:0;line-height:1.5;font-size:13px;'>飞行里程：${distance}</p>"+
+	"</div>";
+
+	map.addOverlay(label);
+ 	
+	//动态获取数据
+	var data_info = [
+	                 [109.7411, 38.2908,substitute(content,{NO:"CA1258",OD:"上海浦东-银川河东",year:"3年",distance:"2047公里"}),250],
+					 [111.7585, 40.8474,substitute(content,{NO:"SC1213",OD:"北京首都-银川河东",year:"8.9年",distance:"1107公里"}),180],
+					 [103.8406, 36.0673,substitute(content,{NO:"CA4233",OD:"成都双流-银川河东",year:"0.1年",distance:"1207公里"}),0],
+					 [108.7666, 34.4457,substitute(content,{NO:"CZ3283",OD:"广州白云-银川河东",year:"12.3年",distance:"2088公里"}),290],
+					 [109.8467, 40.6636,substitute(content,{NO:"ZH1218",OD:"银川河东-北京首都",year:"8.8年",distance:"1107公里"}),0],
+                     [106.8018, 39.6601,substitute(content,{NO:"HU7789",OD:"乌鲁木齐地窝堡-上海浦东",year:"0.6",distance:"3649公里"}),60],
+
+                     [113.8526, 34.5308,substitute(content,{NO:"CA1258",OD:"郑州新郑-上海浦东",year:"3年",distance:"2047公里"}),45],
+					 [114.7046, 38.2826,substitute(content,{NO:"SC1213",OD:"北京首都-银川河东",year:"8.9年",distance:"1107公里"}),330],
+					 [112.6418, 37.7598,substitute(content,{NO:"CA4233",OD:"成都双流-银川河东",year:"0.1年",distance:"1207公里"}),0],
+					 [116.6903, 39.5435,substitute(content,{NO:"CZ3283",OD:"广州白云-银川河东",year:"12.3年",distance:"2088公里"}),290],
+					 [116.3482, 39.7324,substitute(content,{NO:"ZH1218",OD:"银川河东-北京首都",year:"8.8年",distance:"1107公里"}),340],
+                     [117.9697, 40.9578,substitute(content,{NO:"HU7789",OD:"乌鲁木齐地窝堡-上海浦东",year:"0.6",distance:"3649公里"}),180],
+
+                     [117.0013, 36.6716,substitute(content,{NO:"CA1258",OD:"上海浦东-银川河东",year:"3年",distance:"2047公里"}),300],
+					 [117.2059, 39.0909,substitute(content,{NO:"SC1213",OD:"北京首都-银川河东",year:"8.9年",distance:"1107公里"}),150],
+					 [120.3929, 36.0712,substitute(content,{NO:"CA4233",OD:"成都双流-银川河东",year:"0.1年",distance:"1207公里"}),290],
+					 [117.0948, 36.2059,substitute(content,{NO:"CZ3283",OD:"广州白云-银川河东",year:"12.3年",distance:"2088公里"}),310],
+					 [118.6768, 38.5661,substitute(content,{NO:"ZH1218",OD:"银川河东-北京首都",year:"8.8年",distance:"1107公里"}),260],
+                     [109.4963, 36.5910,substitute(content,{NO:"HU7789",OD:"乌鲁木齐地窝堡-上海浦东",year:"0.6",distance:"3649公里"}),35],
+					];
+	var opts = {			
+				enableMessage:true//设置允许信息窗发送短息
+			   };
+	for(var i=0;i<data_info.length;i++){
+		//var url="./images/plane"+data_info[i][3]+".png";
+		var url="./images/plane.png";
+		var angle=data_info[i][3];
+		var myIcon=new BMap.Icon(url,new BMap.Size(32,32));
+		var marker = new BMap.Marker(new BMap.Point(data_info[i][0],data_info[i][1]),{icon:myIcon});  // 创建标注
+		marker.setRotation(angle);
+		var content = data_info[i][2];
+		map.addOverlay(marker);               // 将标注添加到地图中
+		addMouseoverHandler(content,marker,angle);
+	}
+	function addMouseoverHandler(content,marker,angle){
+		marker.addEventListener("mouseover",function(e){
+			openInfo(content,e);
+            var url="./images/umetrip.png";
+            var icon=new BMap.Icon(url,new BMap.Size(32,32));
+            marker.setIcon(icon);
+            marker.setRotation(angle);
+		});
+
+		marker.addEventListener("mouseout", function(e){
+            var url="./images/plane.png";
+            var icon=new BMap.Icon(url,new BMap.Size(32,32));
+            marker.setIcon(icon);
+            marker.setRotation(angle);
+		})
+	}
+	function openInfo(content,e){
+		var p = e.target;
+		var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+		var infoWindow = new BMap.InfoWindow(content,opts);  // 创建信息窗口对象 
+		map.openInfoWindow(infoWindow,point); //开启信息窗口
+	}
+   
+   $(function(){
+   	 
+   })
+
+</script>
+</html>

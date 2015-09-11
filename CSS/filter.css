@@ -1,0 +1,177 @@
+.filter-company,filter-model {
+    cursor: pointer;
+}
+
+#filterbar {
+    width: 355px;
+    position: absolute;
+    right: 10px;
+    top: -100%;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0,0,0,.3);
+    height: calc(100% - 100px);
+    z-index: 99999;
+    transition: top .5s;
+    -moz-transition: top .5s;
+    -webkit-transition: top .5s;
+    -o-transition: top .5s;
+    overflow: hidden;
+}
+
+#filterbar-header {
+    font-size: 18px;
+    font-family: "microsoft yahei";
+    color: #313131;
+    height: 50px;
+    border-bottom: solid 1px #e5e5e5;
+    line-height: 50px;
+    text-indent: 20px;
+    font-weight: 400;
+    position: relative;
+}
+
+.icon-filter-close {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    top: 50%;
+    margin-top: -7px;
+    right: 15px;
+    cursor: pointer;
+    background-image: url("../images/Close.png");
+    background-repeat: no-repeat;
+}
+
+.filter-til {
+    font-weight: 400;
+    color: #313131;
+    font-family: "microsoft yahei";
+    font-size: 14px;
+    height: 50px;
+    border-bottom: solid 1px #e5e5e5;
+    text-indent: 20px;
+    line-height: 50px;
+    position: relative;
+}
+
+.filter-til .btn-all,.filter-til .arrow-active {
+    background: url(../images/arrow.png) no-repeat 30px 50%;
+    height: 100%;
+    line-height: 50px;
+    width: 50px;
+    position: absolute;
+    right: 30px;
+    top: 0;
+    text-align: left;
+    text-indent: 0;
+    font-size: 12px;
+    color: #313131;
+}
+
+.filter-til .btn-all {
+    background: url(../images/arrow.png) no-repeat 30px 50%;
+}
+.arrow-active{
+    background: url(../images/arrow1.png) no-repeat 30px 50%;
+}
+
+.filter-list-box {
+    display: none;
+    overflow: auto;
+    transition: height .5s;
+    -moz-transition: height .5s;
+    -webkit-transition: height .5s;
+    -o-transition: height .5s;
+    height:300px;
+    padding: 0 25px;
+}
+
+.filter-list-box .filter-all, .filter-list-box .filter-other {
+    margin-top: 10px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 14px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.filter-list-box .filter-all i, .filter-list-box .filter-other i {
+    width: 12px;
+    height: 12px;
+    background: url(../images/filter-unchecked.png) center center no-repeat;
+    position: absolute;
+    top: 50%;
+    margin-top: -6px;
+    left: 0;
+    cursor: pointer;
+}
+
+.filter-list-box li {
+    height: 35px;
+    line-height: 35px;
+    font-size: 14px;
+    padding-left: 20px;
+    position: relative;
+    width: 120px;
+    float: left;
+}
+
+.filter-model-box li {
+    width: 120px;
+    float: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.filter-til .unit {
+    color: #a0a0a0;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+
+address, caption, cite, code, dfn, var, em, strong, th {
+    font-style: normal;
+    font-weight: 400;
+}
+
+#filterbar-footer {
+    height: 65px;
+    border-top: solid 1px #e5e5e5;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+}
+
+#filterbar-footer .filterbar-footer-btn {
+    position: absolute;
+    top: 20px;
+    left: 28px;
+    border: 0;
+    width: 85px;
+    height: 28px;
+    color: #fff;
+    font: 12px/28px "microsoft yahei";
+    background: #82bf50;
+    text-align: center;
+    outline: 0;
+    cursor: pointer;
+}
+
+#filterbar-reset.filterbar-footer-btn {
+    left: auto;
+    right: 28px;
+    background: #bfbfbf;
+}
+
+#filterbar.active {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    top: 70px;
+}
